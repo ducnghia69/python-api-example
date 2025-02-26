@@ -153,8 +153,8 @@ def your_url():
         "iosApp": f'twitter://post?message={message}',
         "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
         "android": {
-            "host": f'post/?message={urllib.parse.quote(message)}',
-            "scheme": 'twitter',
+            "host": f'',
+            "scheme": '',
             "package": 'com.example.deeplink_cookbook',
             "fallback": f'https://play.google.com/store/apps/details?id=com.twitter.android&hl=en&message={urllib.parse.quote(message)}'
         }
