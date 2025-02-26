@@ -36,8 +36,6 @@ class AppRedirect:
         if has_ios and ("iPhone" in user_agent or "iPad" in user_agent or "iPod" in user_agent):
             urls = []
             
-            redirect(options["iosAppStore"])
-
             if options.get("iosApp"):
                 urls.append(options["iosApp"])
             if options.get("iosAppStore"):
