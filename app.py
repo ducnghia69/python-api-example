@@ -144,19 +144,21 @@ def serve_aasa():
 
 @app.route('/abc')
 def your_url():
+    print(request)
+    print(request.args.get('playmarket'))
     # Kiểm tra tham số `playmarket=true`
     if request.args.get('playmarket') == 'true':
         # Chuyển hướng đến Google Play Store
         return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
     
     # Kiểm tra User-Agent (nếu cần)
-    user_agent = request.headers.get('User-Agent')
-    if "MyAppsAgent" not in user_agent:
-        # Chuyển hướng đến Google Play Store
-        return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
+    # user_agent = request.headers.get('User-Agent')
+    # if "MyAppsAgent" not in user_agent:
+    #     # Chuyển hướng đến Google Play Store
+    #     return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
     
     # Xử lý yêu cầu bình thường (dành cho ứng dụng)
-    return "Xử lý yêu cầu bình thường (dành cho ứng dụng)"
+    return "..."
 
 api.add_resource(AddRecord, "/add-record")
 api.add_resource(Records, "/records")
