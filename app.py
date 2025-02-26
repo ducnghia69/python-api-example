@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request, send_from_directory, redirect
 from flask_restful import Api, Resource
 from flasgger import Swagger
+import urllib
 
+from app_redirect import AppRedirect
 import book_review
 import os
 
@@ -144,21 +146,24 @@ def serve_aasa():
 
 @app.route('/abc')
 def your_url():
-    print(request)
-    print(request.args.get('playmarket'))
-    # Kiểm tra tham số `playmarket=true`
-    if request.args.get('playmarket') == 'true':
-        # Chuyển hướng đến Google Play Store
-        return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
-    
-    # Kiểm tra User-Agent (nếu cần)
-    # user_agent = request.headers.get('User-Agent')
-    # if "MyAppsAgent" not in user_agent:
-    #     # Chuyển hướng đến Google Play Store
-    #     return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
-    
-    # Xử lý yêu cầu bình thường (dành cho ứng dụng)
-    return "..."
+    qs = request.args.to_dict()
+    message = qs.get('message', '')
+
+    options = {
+        "iosApp": f'twitter://post?message={message}',
+        "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
+        "android": {
+            "host": f'post/?message={urllib.parse.quote(message)}',
+            "scheme": 'twitter',
+            "package": 'com.twitter.android',
+            "fallback": f'https://play.google.com/store/apps/details?id=com.twitter.android&hl=en&message={urllib.parse.quote(message)}'
+        }
+    }
+
+    return AppRedirect.redirect(options)
+
+
+
 
 api.add_resource(AddRecord, "/add-record")
 api.add_resource(Records, "/records")
