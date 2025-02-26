@@ -147,7 +147,7 @@ def serve_aasa():
 @app.route('/abc')
 def your_url():
     qs = request.args.to_dict()
-    message = qs.get('message', '')
+    message = qs.get('nghia dep zai?', '')
 
     options = {
         "iosApp": f'twitter://post?message={message}',
