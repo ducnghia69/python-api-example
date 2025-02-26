@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, redirect
 from flask_restful import Api, Resource
 from flasgger import Swagger
 
@@ -141,6 +141,22 @@ def serve_assetlinks():
 def serve_aasa():
     return send_from_directory(static_dir, 'apple-app-site-association', mimetype='application/json')
 
+
+@app.route('/')
+def your_url():
+    # Kiểm tra tham số `playmarket=true`
+    if request.args.get('playmarket') == 'true':
+        # Chuyển hướng đến Google Play Store
+        return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
+    
+    # Kiểm tra User-Agent (nếu cần)
+    user_agent = request.headers.get('User-Agent')
+    if "MyAppsAgent" not in user_agent:
+        # Chuyển hướng đến Google Play Store
+        return redirect("https://play.google.com/store/apps/details?id=com.coreventura.flappydragon")
+    
+    # Xử lý yêu cầu bình thường (dành cho ứng dụng)
+    return "Xử lý yêu cầu bình thường (dành cho ứng dụng)"
 
 api.add_resource(AddRecord, "/add-record")
 api.add_resource(Records, "/records")
