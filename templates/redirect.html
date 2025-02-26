@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script src="{{ url_for('static', filename='js/redirect.js') }}"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        (function() {
+            var options = {{ options|tojson|safe }};
+            AppRedirect.redirect(options);
+        })();
+    </script>
+</body>
+</html>

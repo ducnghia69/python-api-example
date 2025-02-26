@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from flask import Flask, request, redirect, jsonify
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ class AppRedirect:
         def try_to_open_in_multiple_phases(urls):
             nonlocal browser_moved_to_background
             current_index = 0
-            redirect_time = None
+            redirect_time = datetime.now()
 
             def next_phase():
                 nonlocal current_index, redirect_time
@@ -21,7 +21,7 @@ class AppRedirect:
                         print('Browser moved to the background, we assume that we are done here')
                         return
 
-                    if redirect_time and (datetime.now() - redirect_time).total_seconds() > 3:
+                    if (datetime.now() - redirect_time).total_seconds() > 3:
                         print('Enough time has passed, the app is probably open')
                     else:
                         redirect_time = datetime.now()
@@ -37,12 +37,10 @@ class AppRedirect:
             urls = []
             
             if options.get("iosApp"):
-                return redirect(options["iosApp"])
-                # urls.append(options["iosApp"])
+                urls.append(options["iosApp"])
             if options.get("iosAppStore"):
-                return redirect(options["iosAppStore"])
-                # urls.append(options["iosAppStore"])
-            # return try_to_open_in_multiple_phases(urls)
+                urls.append(options["iosAppStore"])
+            return try_to_open_in_multiple_phases(urls)
 
         elif has_android and "Android" in user_agent:
             intent = options["android"]

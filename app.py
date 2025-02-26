@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory, redirect
+from flask import Flask, jsonify, request, send_from_directory, redirect, render_template
 from flask_restful import Api, Resource
 from flasgger import Swagger
 import urllib
@@ -147,10 +147,11 @@ def serve_aasa():
 @app.route('/abc')
 def redirectIOSApp():
     qs = request.args.to_dict()
-    message = qs.get('nghia dep zai?', '')
+    message = 'nghia dep zai?'
 
     options = {
-        "iosApp": f'twitter://post?message={message}',
+        "iosApp": f'applinks:python-api-example-kl64.onrender.com',
+        "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
         "android": {
             "host": f'python-api-example-kl64.onrender.com',
             "scheme": 'https',
@@ -176,7 +177,8 @@ def redirectIOSAppStore():
         }
     }
 
-    return AppRedirect.redirect(options)
+    return render_template('redirect.html', options=options)
+
 
 
 api.add_resource(AddRecord, "/add-record")
