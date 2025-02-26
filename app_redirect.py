@@ -37,10 +37,12 @@ class AppRedirect:
             urls = []
             
             if options.get("iosApp"):
-                urls.append(options["iosApp"])
+                return redirect(options["iosApp"])
+                # urls.append(options["iosApp"])
             if options.get("iosAppStore"):
-                urls.append(options["iosAppStore"])
-            return try_to_open_in_multiple_phases(urls)
+                return redirect(options["iosAppStore"])
+                # urls.append(options["iosAppStore"])
+            # return try_to_open_in_multiple_phases(urls)
 
         elif has_android and "Android" in user_agent:
             intent = options["android"]
