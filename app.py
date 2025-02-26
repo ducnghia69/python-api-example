@@ -145,13 +145,12 @@ def serve_aasa():
 
 
 @app.route('/abc')
-def your_url():
+def redirectIOSApp():
     qs = request.args.to_dict()
     message = qs.get('nghia dep zai?', '')
 
     options = {
         "iosApp": f'twitter://post?message={message}',
-        "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
         "android": {
             "host": f'python-api-example-kl64.onrender.com',
             "scheme": 'https',
@@ -162,7 +161,22 @@ def your_url():
 
     return AppRedirect.redirect(options)
 
+@app.route('/abc1')
+def redirectIOSAppStore():
+    qs = request.args.to_dict()
+    message = qs.get('nghia dep zai so 1?', '')
 
+    options = {
+        "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
+        "android": {
+            "host": f'python-api-example-kl64.onrender.com',
+            "scheme": 'https',
+            "package": 'com.example.deeplink_cookbook',
+            "fallback": f'https://play.google.com/store/apps/details?id=com.twitter.android&hl=en&message={urllib.parse.quote(message)}'
+        }
+    }
+
+    return AppRedirect.redirect(options)
 
 
 api.add_resource(AddRecord, "/add-record")
