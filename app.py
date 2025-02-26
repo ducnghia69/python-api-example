@@ -142,7 +142,7 @@ def serve_aasa():
     return send_from_directory(static_dir, 'apple-app-site-association', mimetype='application/json')
 
 
-@app.route('/')
+@app.route('/abc')
 def your_url():
     # Kiểm tra tham số `playmarket=true`
     if request.args.get('playmarket') == 'true':
