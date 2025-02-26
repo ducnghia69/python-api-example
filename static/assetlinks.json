@@ -1,0 +1,15 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+        "namespace": "android_app",
+        "package_name": "jp.mynavi.ios.sys.pet.customer.stg",
+        "sha256_cert_fingerprints": [
+            "C8:18:CB:63:D0:C3:51:57:83:72:8D:D6:6B:62:E8:3F:D9:E3:DF:63:A3:64:B5:B4:33:01:DA:A6:46:25:E4:05",
+            "ED:A4:BF:25:DC:43:3E:01:45:2E:9E:00:A6:44:13:95:D6:83:09:79:CA:00:6C:1C:19:6F:17:D5:3D:AA:4A:30",
+            "2A:AE:46:6E:F1:98:C4:12:CA:FB:F2:F3:97:AE:BE:2A:8D:3B:44:16:F8:CA:12:5F:1B:F9:AA:B6:F0:F0:F7:E3",
+            "2F:60:30:F2:1D:63:09:E8:3E:0F:0F:F0:4A:ED:64:68:D7:ED:5F:7F:C7:56:E8:80:E1:B1:BE:C4:5C:6A:D3:E7"
+        ]
+        }
+    }
+]

@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CT9EFA7P77.jp.mynavi.ios.sys.pet.customer.stg",
+        "paths": [
+          "/"
+        ],
+        "appIDs": [
+          "CT9EFA7P77.jp.mynavi.ios.sys.pet.customer.stg"
+        ],
+        "components": [
+          {
+            "/": "/"
+          }
+        ]
+      }
+    ]
+  }
+}

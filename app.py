@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_restful import Api, Resource
 from flasgger import Swagger
 
 import book_review
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -127,6 +128,18 @@ class AddRecord(Resource):
         else:
             return {"message": "Failed to add record"}, 500
         
+# Định nghĩa thư mục chứa các tệp JSON
+static_dir = os.path.join(app.root_path, 'static')
+
+# Cấu hình route phục vụ tệp assetlinks.json (Android App Links)
+@app.route('/.well-known/assetlinks.json')
+def serve_assetlinks():
+    return send_from_directory(static_dir, 'assetlinks.json', mimetype='application/json')
+
+# Cấu hình route phục vụ tệp apple-app-site-association (iOS Universal Links)
+@app.route('/.well-known/apple-app-site-association')
+def serve_aasa():
+    return send_from_directory(static_dir, 'apple-app-site-association', mimetype='application/json')
 
 
 api.add_resource(AddRecord, "/add-record")
