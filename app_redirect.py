@@ -46,7 +46,7 @@ class AppRedirect:
             intent_url = f'intent://{intent["host"]}#Intent;' \
                          f'scheme={intent["scheme"]};' \
                          f'package={intent["package"]};' \
-                         f'{f"action={intent["action"]};" if intent.get("action") else ""}' \
+                         f'{f"action={intent['action']};" if intent.get("action") else ""}' \
                          f'{f"category={intent["category"]};" if intent.get("category") else ""}' \
                          f'{f"component={intent["component"]};" if intent.get("component") else ""}' \
                          f'{f"S.browser_fallback_url={intent["fallback"]};" if intent.get("fallback") else ""}' \
