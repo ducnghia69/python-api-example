@@ -168,6 +168,7 @@ def redirectIOSAppStore():
     message = qs.get('nghia dep zai so 1?', '')
 
     options = {
+        "iosApp": f'twitter://post?message=' + message,
         "iosAppStore": f'https://itunes.apple.com/il/app/twitter/id333903271?mt=8&message={message}',
         "android": {
             "host": f'python-api-example-kl64.onrender.com',
