@@ -155,7 +155,7 @@ def your_url():
         "android": {
             "host": f'post/?message={urllib.parse.quote(message)}',
             "scheme": 'twitter',
-            "package": 'com.twitter.android',
+            "package": 'com.example.deeplink_cookbook',
             "fallback": f'https://play.google.com/store/apps/details?id=com.twitter.android&hl=en&message={urllib.parse.quote(message)}'
         }
     }
