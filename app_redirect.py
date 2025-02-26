@@ -44,13 +44,13 @@ class AppRedirect:
         elif has_android and "Android" in user_agent:
             intent = options["android"]
             intent_url = f'intent://{intent["host"]}#Intent;' \
-                         f'scheme={intent["scheme"]};' \
-                         f'package={intent["package"]};' \
-                         f'{f"action={intent['action']};" if intent.get("action") else ""}' \
-                         f'{f"category={intent["category"]};" if intent.get("category") else ""}' \
-                         f'{f"component={intent["component"]};" if intent.get("component") else ""}' \
-                         f'{f"S.browser_fallback_url={intent["fallback"]};" if intent.get("fallback") else ""}' \
-                         'end'
+                f'scheme={intent["scheme"]};' \
+                f'package={intent["package"]};' \
+                f'{f"action={intent['action']};" if intent.get("action") else ""}' \
+                f'{f"category={intent['category']};" if intent.get("category") else ""}' \
+                f'{f"component={intent['component']};" if intent.get("component") else ""}' \
+                f'{f"S.browser_fallback_url={intent['fallback']};" if intent.get("fallback") else ""}' \
+                'end'
             return redirect(intent_url)
 
         elif has_overall_fallback:
